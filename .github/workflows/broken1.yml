@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubunt-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
     - name: Run tests
       run: npm test
       env:
-          CI: true
+        CI: true
 
     - name: Build
       run: npm run build
@@ -37,7 +37,7 @@ jobs:
         NODE_ENV: production
 
   lint:
-    runs-on: linux-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -52,7 +52,7 @@ jobs:
     - name: Run linter
       run: npm run lint
       env:
-          CI: true
+        CI: true
 
   deploy:
     runs-on: windows-latest 
@@ -73,5 +73,6 @@ jobs:
     steps:
     - name: Notify team
       run: echo "Deployment complete"
-      env: 
+      env:
+        NODE_ENV: production
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
